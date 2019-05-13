@@ -65,7 +65,7 @@ example
 ## 変更履歴をマージ
 * `git merge ブランチ名`
 
-## ブランチの作成
+## ブランチの削除
 * `git branch -d ブランチ名`
 
 ## githubを使った開発の流れ(Github ver)
