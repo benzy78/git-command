@@ -55,6 +55,9 @@
 example
 * `git config --global alias.cm commit` 「commit」を「cm」で使えるようにした。
 
+## ファイルをgitに追跡させない
+* `.gitignore`ファイルを作成し、そこに、gitで追跡させたくないファイル名を書き込むと、指定したファイルはgitに追跡されない。パスワードなどが記載されているもので使う。
+
 ## リモートの表示
 * `git remote` 設定しているリモートリポジトリの名前を表示
 
