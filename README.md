@@ -68,9 +68,17 @@ example
 * `git reset HEAD ファイル名`
 * `git reset HEAD ディレクトリ名`
 * `git reset HEAD`　：全変更を取り消す
+* 指定した変更をステージから取り消すだけなので、ワークツリーのファイルには影響を与えない。
+
+## 直前のコミットをやり直す
+* `git commit --amend`
+* リモートリポジトリにPushしたらコミットはやり直ししてはいけない。
+*　まず、ファイルを修正し、`git add .`、それから`git commit --amend`
 
 ## リモートの表示
 * `git remote` 設定しているリモートリポジトリの名前を表示
+* `git remote -v` 対応するURLを表示
+
 
 ## リモートからのプル
 * `git pull リモート名 ブランチ名`
