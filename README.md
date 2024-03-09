@@ -79,12 +79,20 @@ example
 * `git remote` 設定しているリモートリポジトリの名前を表示
 * `git remote -v` 対応するURLを表示
 
+## リモートからの情報取得する2つの方法
+1. fetch：`git fetch リモート名`　ローカルリポジトリに情報が落とされ、ワークツリーには落とされない。ワークツリーに反映させたいなら、`git merge`する必要がある。
+2. pull：`git pull リモート名　ブランチ名`　例`git pull origin main` リモートから情報を取得して、マージまでを一度にやりたい時。これは、`git fetch origin main` `git merge origin main`と同じ操作。
+* pullは挙動が特殊なので、基本的にはfetchを使うのがおすすめらしい。
+* プルの注意点：今いるブランチにマージされてしまうので、注意が必要。
 
-## リモートからのプル
-* `git pull リモート名 ブランチ名`
+## リモートの詳細情報を表示する
+* `git remote show リモート名`
 
 ## リモートの削除
 * `git remote rm リモート名`
+
+## リモート名の変更・削除
+* `git remote rename 旧リモート名　新リモート名`
 
 ## ブランチの作成
 * `git branch ブランチ名`
@@ -101,6 +109,11 @@ example
 
 ## ブランチの削除
 * `git branch -d ブランチ名`
+
+## githubの流れ
+1. githubで新規のリポジトリを作成
+2. URLをコピーし、`git remote add ブランチ名？ URL`で
+3. `git push リモート名 ブランチ名`で変更内容をリモートに反映させる
 
 ## githubを使った開発の流れ(Github ver)
 1. 自分のブランチを作成
