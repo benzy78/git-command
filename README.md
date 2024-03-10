@@ -84,6 +84,10 @@ example
 2. pull：`git pull リモート名　ブランチ名`　例`git pull origin main` リモートから情報を取得して、マージまでを一度にやりたい時。これは、`git fetch origin main` `git merge origin main`と同じ操作。
 * pullは挙動が特殊なので、基本的にはfetchを使うのがおすすめらしい。
 * プルの注意点：今いるブランチにマージされてしまうので、注意が必要。
+### プルのリベース型
+* `git pull --rebase リモート名 ブランチ名` マージコミットが残らないから、Githubの内容を取得したいだけの時は--rebaseを使うと良い。
+* プルをリベース型にする方法：`git config --global pull.rebase true`これをすると、--rebaseオプションをつけなくても、git pullの挙動がリベース型になる。
+* mainブランチでgit pullするときだけの場合は　`git config branch.main.rebase true`
 
 ## リモートの詳細情報を表示する
 * `git remote show リモート名`
@@ -164,3 +168,19 @@ example
 * main(master)にマージするためにプルリクエストを使う
 * 必ずレビューを受ける
 * main(master)ブランチにマージしたらすぐデプロイする。テストとデプロイ作業は自動化。
+
+## リベース
+* `git rebase ブランチ名` ブランチの基点となるコミットを別のコミットに移動する。
+* 注意点：GitHubにpushしたコミットをリベースしてはいけない。pushできなくなる。
+
+## mergeとrebaseどちらを使うべきか
+### mergeのメリ・デメ
+* メリット：コンフリクトの解決が比較的簡単
+* デメリット：マージコミットがたくさんあると履歴が複雑化する
+* 結論：作業の履歴を残したいならmergeを使う
+### rebaseのメリ・デメ
+* メリット：履歴をきれいに保てる
+* デメリット：コンフリクトの解決がmergeより面倒
+* 結論：履歴をきれいにしたいなら、rebaseを使う。
+
+
