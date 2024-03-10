@@ -98,6 +98,7 @@ example
 * ブランチはコミットを指したポインタ。コミットしたらブランチが指すコミットファイルが変わる。
 * HEADは自分が作業しているブランチを指している。
 * `git branch ブランチ名`でブランチを作成。作成した段階では、まだブランチは切り替わらないので注意。
+* `git checkout -b 新ブランチ名`ブランチを新規作成して切り替える
 
 ## ブランチの一覧を表示
 * `git branch` ブランチの一覧を表示と自分の作業中のブランチを表示
@@ -105,7 +106,6 @@ example
 
 ## ブランチの切り替え
 * `git checkout 既存ブランチ名`　ブランチの切り替え
-* `git checkout -b 新ブランチ名`ブランチを新規作成して切り替える
 
 ## 変更履歴をマージ
 * `git merge ブランチ名`
@@ -129,22 +129,38 @@ example
 * `git branch -d ブランチ名`　masterにマージされていない変更が残っている場合削除されない。
 * `git branch -D ブランチ名`　masterにマージされていない変更が残っている場合でも削除される。
 
+## ブランチを利用した開発
+* masterブランチをリリース用ブランチに、開発はトピックブランチを作成して進めるのが基本
+* 最新のmasterから、トピックごとにブランチを切って、開発が完了したらmasterにマージする。
+
 ## githubの流れ
 1. githubで新規のリポジトリを作成
 2. URLをコピーし、`git remote add ブランチ名？ URL`で
 3. `git push リモート名 ブランチ名`で変更内容をリモートに反映させる
 
-## githubを使った開発の流れ(Github ver)
-1. 自分のブランチを作成
-2. ファイルの変更
-3. `git add .`する
-4. `git commit -v`
-5. gitプッシュ　`git push origin` 作業用ブランチ (ここまでがローカルの作業ブランチ内での作業。次がGithubでの作業)
-6. Githubの＜code＞の画面でbranchを自分の作業用ブランチに切り替える
-7. New pull requestを押す
-8. メッセージを書く **compareを作業用ブランチになっているか確認**
-9. 緑のCreate Pull requestボタンを押す
-10. Merge pull request を押す（１０、１１は共同開発なら誰か他の人がやる）
-11. Confirm mergeを押す（プルリクが終了）
-12. ローカルで自分のブランチをmasterにして、リモートの内容をローカルにpullする。`git pull origin master`
-13. ローカルのブランチを作業用ブランチに切り替え、masterの内容を開発ブランチにmergeする。`git merge master`
+## githubを使った開発の流れ(Github ver)/=プルリクエストまでの流れ=github flowの流れ
+1. main(master)ブランチを最新の状態にするため、`git pull origin main`
+2. 自分のブランチを作成
+3. ファイルの変更
+4. `git add .`する
+5. `git commit -v`
+6. gitプッシュ　`git push origin 作業用ブランチ` (ここまでがローカルの作業ブランチ内での作業。次がGithubでの作業)
+7. Githubの＜code＞の画面でbranchを自分の作業用ブランチに切り替える
+8. New pull requestを押す
+9. メッセージを書く **compareを作業用ブランチになっているか確認**
+10. 緑のCreate Pull requestボタンを押す
+11. Merge pull request を押す（１０、１１は共同開発なら誰か他の人がやる）
+12. Confirm mergeを押す（プルリクが終了）
+13. ローカルで自分のブランチをmasterにして、リモートの内容をローカルにpullする。`git pull origin master`
+14. 作業用のブランチを削除する
+15. 1に戻る
+
+## GitHub Flow
+* GitHub FlowとはGitHub社のワークフロー。
+* main(master)ブランチは常にデプロイできる状態に保つ
+* 新開発はmasterブランチから新しいブランチを作成してスタート
+* 作成した新しいブランチ上で作業しコミットする
+* 定期的にpushする
+* main(master)にマージするためにプルリクエストを使う
+* 必ずレビューを受ける
+* main(master)ブランチにマージしたらすぐデプロイする。テストとデプロイ作業は自動化。
