@@ -139,8 +139,9 @@ example
 
 ## githubの流れ
 1. githubで新規のリポジトリを作成
-2. URLをコピーし、`git remote add origin リモートのURL`で
-3. `git clone リモートのURL`で変更内容をリモートに反映させる
+2. URLをコピーし、`git remote add origin リモートのURL`を作業中のディレクトリで実行
+3. 既存のプロジェクトの場合：`git clone リモートのURL`で変更内容をリモートに反映させる
+4. 新しく自分でプロジェクトを始める場合：git add., git cm -m"任意のコミットメッセージ", git push origin main
 
 ## githubを使った開発の流れ(Github ver)/=プルリクエストまでの流れ=github flowの流れ
 1. main(master)ブランチを最新の状態にするため、`git pull origin main`
